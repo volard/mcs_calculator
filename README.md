@@ -14,9 +14,8 @@ flutter run
 
 ## References
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Flutter Labs](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Flutter samples](https://docs.flutter.dev/cookbook)
+- [An online Dart & Flutter sandbox](https://zapp.run)
+- [Online Flutter documentation](https://docs.flutter.dev/)
+- [Flutter gallery](https://gallery.flutter.dev/#/)
