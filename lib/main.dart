@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mcs_calculator/dynamic_line_chart_widget.dart';
 import 'package:mcs_calculator/presentation/resources/app_resources.dart';
+import 'package:mcs_calculator/results_panel.dart';
 
+import 'input_form.dart';
 import 'line_chart_widget.dart';
 
 void main() {
@@ -52,9 +54,21 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
+
             children: <Widget>[
-              // LineChartWidget(),
-              DynamicLineChartWidget(key: UniqueKey(),),
+
+              InputFormWidget(key: UniqueKey(),),
+
+              ResultsPane(key: UniqueKey(),),
+
+              Padding(
+                padding: const EdgeInsets.only(top: 44),
+                child: DynamicLineChartWidget(key: UniqueKey(),),
+              )
+
+
+
+
             ],
           ),
         ),
