@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'global_vars.dart';
+import 'package:mcs_calculator/data/cs_model.dart';
+import 'package:provider/provider.dart';
 
 class ResultsPane extends StatefulWidget {
   const ResultsPane({Key? key}) : super(key: key);
@@ -12,10 +12,16 @@ class ResultsPane extends StatefulWidget {
 class _ResultsPaneState extends State<ResultsPane> {
   @override
   Widget build(BuildContext context) {
-    if(isInputFormValidated)
-      {
-        return const Text("Ready to calculate");
-      }
-    return const Text("Not all fields contain data");
+    return Consumer<ComputingSystemModel>(
+        builder: (context, model, child) {
+          if(model.isReady) {
+            return const Text("Ready to calculate");
+          }
+          return const Text("Not all fields contain data");
+        },
+
+    );
+
+    //
   }
 }
