@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mcs_calculator/data/cs_model.dart';
-import 'package:mcs_calculator/dynamic_line_chart_widget.dart';
-import 'package:mcs_calculator/presentation/resources/app_resources.dart';
-import 'package:mcs_calculator/results_panel.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mcs_calculator/pages/HomePage.dart';
+import 'package:mcs_calculator/viewmodels/cs_model.dart';
 import 'package:provider/provider.dart';
-
-import 'input_form.dart';
-import 'line_chart_widget.dart';
+import 'generated/l10n.dart';
 
 void main() {
   runApp(
@@ -17,13 +14,41 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<
+        _MyAppState>();
+    state?.setLocale(newLocale);
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: AppTexts.appName,
+      title: "MCS calculator",
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(
         colorSchemeSeed: Colors.indigo,
         useMaterial3: true,
@@ -34,50 +59,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
-      home: const MyHomePage(title: AppTexts.appName),
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              InputFormWidget(
-                key: UniqueKey(),
-              ),
-              ResultsPane(
-                key: UniqueKey(),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 44),
-                child: DynamicLineChartWidget(
-                  key: UniqueKey(),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+      locale: _locale,
     );
   }
 }

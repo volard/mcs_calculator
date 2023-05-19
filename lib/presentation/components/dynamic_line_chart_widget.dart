@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:mcs_calculator/presentation/resources/app_resources.dart';
 
-import 'data/price_point.dart';
+import '../../data/price_point.dart';
 
 class DynamicLineChartWidget extends StatefulWidget {
   const DynamicLineChartWidget({Key? key}) : super(key: key);
