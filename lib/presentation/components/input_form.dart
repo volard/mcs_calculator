@@ -49,7 +49,9 @@ class _InputFormWidgetState extends State<InputFormWidget> {
               onHelpIconPressedHandler: () {
                 showModalBottomSheet(
                     context: context,
-                    builder: (context) => loadFactorPage);
+                    builder: (BuildContext context) {  return loadFactorPage(context: context);}
+                );
+                    // builder: (context) =>  );
               },
               labelTextCustom: S.of(context).loadFactor,
               maxLengthCustom: 4,

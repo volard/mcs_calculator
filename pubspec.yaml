@@ -38,6 +38,7 @@ dependencies:
   fl_chart: ^0.62.0
   flutter_tex: ^4.0.3+4
   provider: ^6.0.0
+  adaptive_theme: ^3.2.1
   flutter_localizations:
     sdk: flutter
   intl: any
