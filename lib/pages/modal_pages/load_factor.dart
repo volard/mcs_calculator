@@ -1,13 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:mcs_calculator/main.dart';
 
 Widget loadFactorPage({required BuildContext context}) {
   if (kDebugMode) {
     // print("${Theme.of(context).focusColor.value.toRadixString(16)} ");
   }
-  String colorText = Theme.of(context).primaryTextTheme.bodyMedium?.color?.value.toRadixString(16) ?? "000000";
-  print(colorText);
+
+  String colorText = "ffffff";
+  if (savedThemeMode != null){
+    if(savedThemeMode!.isLight){
+      colorText = "000000";
+    }
+
+  }
+  // String colorText = Theme.of(context).primaryTextTheme.bodyMedium?.color?.value.toRadixString(16) ?? "000000";
+  // print(colorText);
   return Column(
     children: [
       const Text("Load factor info"),

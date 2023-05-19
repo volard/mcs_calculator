@@ -4,8 +4,13 @@ import 'package:mcs_calculator/pages/HomePage.dart';
 import 'package:mcs_calculator/viewmodels/cs_model.dart';
 import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 
-void main() {
+AdaptiveThemeMode? savedThemeMode;
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  savedThemeMode = await AdaptiveTheme.getThemeMode();
   runApp(
     ChangeNotifierProvider(
       create: (context) => ComputingSystemModel(),
@@ -21,8 +26,7 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 
   static void setLocale(BuildContext context, Locale newLocale) {
-    _MyAppState? state = context.findAncestorStateOfType<
-        _MyAppState>();
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state?.setLocale(newLocale);
   }
 }
@@ -36,32 +40,43 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "MCS calculator",
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      theme: ThemeData(
-        colorSchemeSeed: Colors.indigo,
-        useMaterial3: true,
+    return AdaptiveTheme(
+      light: ThemeData(
         brightness: Brightness.light,
+        primarySwatch: Colors.red,
+        hintColor: Colors.amber,
       ),
-      darkTheme: ThemeData(
-        colorSchemeSeed: Colors.blue,
-        useMaterial3: true,
+      dark: ThemeData(
         brightness: Brightness.dark,
+        primarySwatch: Colors.red,
+        hintColor: Colors.amber,
       ),
-      home: const HomePage(),
-      debugShowCheckedModeBanner: false,
-      locale: _locale,
+      initial: AdaptiveThemeMode.light,
+      builder: (theme, darkTheme) => MaterialApp(
+        title: "MCS calculator",
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        theme: ThemeData(
+          colorSchemeSeed: Colors.indigo,
+          useMaterial3: true,
+          brightness: Brightness.light,
+        ),
+        darkTheme: ThemeData(
+          colorSchemeSeed: Colors.blue,
+          useMaterial3: true,
+          brightness: Brightness.dark,
+        ),
+        home: const HomePage(),
+        debugShowCheckedModeBanner: false,
+        locale: _locale,
+      ),
     );
   }
 }
