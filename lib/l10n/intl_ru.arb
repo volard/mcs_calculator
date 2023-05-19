@@ -1,0 +1,14 @@
+{
+  "avgPendingTime": "Среднее время ожидания",
+  "channelsQuantity": "Количество каналов",
+  "loadFactor": "Коэфициент загрузки системы",
+  "inputStreamIntensity": "Интенсивность входного потока",
+  "pendingCapacity": "Число мест ожидания",
+  "queueLength": "Длина очереди",
+  "requestsQuantity": "Количество заявок",
+  "serviceTime" : "Время обслуживания",
+  "stateProbability": "Вероятность состояния",
+  "stateProbabilities": "Вероятности состояний",
+  "appName": "Калькулятор ВС",
+  "noInputErrorLabelText": "Введите значение"
+}

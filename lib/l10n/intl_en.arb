@@ -1,0 +1,14 @@
+{
+  "avgPendingTime": "Average pending time",
+  "channelsQuantity": "Channels quantity",
+  "loadFactor": "Load factor",
+  "inputStreamIntensity": "Input stream factor",
+  "pendingCapacity": "Pending capacity",
+  "queueLength": "Queue length",
+  "requestsQuantity": "Requests quantity",
+  "serviceTime" : "Service time",
+  "stateProbability": "State probability",
+  "stateProbabilities": "States probabilities",
+  "appName": "MSC calculator",
+  "noInputErrorLabelText": "Please input value"
+}
