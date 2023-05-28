@@ -1,14 +1,35 @@
 {
+  "@@locale": "ru",
   "avgPendingTime": "Среднее время ожидания",
   "channelsQuantity": "Количество каналов",
   "loadFactor": "Коэфициент загрузки системы",
   "inputStreamIntensity": "Интенсивность входного потока",
   "pendingCapacity": "Число мест ожидания",
   "queueLength": "Длина очереди",
+  "queue": "Очередь",
+
   "requestsQuantity": "Количество заявок",
   "serviceTime" : "Время обслуживания",
   "stateProbability": "Вероятность состояния",
   "stateProbabilities": "Вероятности состояний",
   "appName": "Калькулятор ВС",
-  "noInputErrorLabelText": "Введите значение"
+  "noInputErrorLabelText": "Введите значение",
+  "inputStreamIntensityDescription": "Количество поступающих заявок в единицу времени",
+  "serviceTimeDescription": "Также известный, как интенсивность обслуживания. Это количество времени, необходимое для обработки одной входящей заявки",
+  "channelsQuantityDescription": "Количество каналов (или обслуживающих устройств) обрабатывающих входящие заявки",
+  "pendingCapacityDescription": "Известный также, как размер буфера или число мест ожидания. Это количество заявок, которые могут оставаться в системе, ожидая их очереди на обработку. Представьте это, как количество человек, которые могут стоять в очереди на кассу, например",
+  "loadFactorDescription":"<p> $$\\rho = \\frac{\\lambda}{m \\mu}$$ where <br> \\(m\\) - количество каналов <br> \\(\\mu\\) - время обслуживания </p>",
+  "absoluteThroughput": "Абсолютная пропускная способность",
+  "relativeThroughput": "Относительная пропускная способность",
+  "where": "Где",
+  "reject": "отказ",
+  "constant": "Константа",
+  "finite" : "Конечна",
+  "infinite": "Бесконечна",
+  "pZeroDescription": "Вероятность того, что система находится в нулевом состоянии",
+  "PnmDescription": "Вероятность того, что система находится в n+m состоянии. Другими словами, это когда все обслуживающие устройства (или каналы = n) заняты и длина очереди (или число мест ожидания = m) заполнена, поэтому любая новая заявка будет сразу отклонена",
+  "requestRejectionProbability": "вероятность отказа заявки",
+  "avgPendingTimeDescription": "<p> $$\\overline'{'W'}' = \\frac'{'L'}''{'A'}'$$ where <br> \\(L\\) - queue length <br> \\(A\\) - absolute throughput $$ A = \\lambda Q $$ <br> where \\(Q\\) - relative throughput $$ Q = 1 - P_{\\\\reject} $$ </p>"
+
+
 }

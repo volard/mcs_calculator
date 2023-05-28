@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "avgPendingTime": "Average pending time",
   "channelsQuantity": "Channels quantity",
   "loadFactor": "Load factor",
@@ -10,5 +11,24 @@
   "stateProbability": "State probability",
   "stateProbabilities": "States probabilities",
   "appName": "MSC calculator",
-  "noInputErrorLabelText": "Please input value"
+  "noInputErrorLabelText": "Please input value",
+  "inputStreamIntensityDescription": "Quantity of incoming requests per unit time",
+  "serviceTimeDescription": "Also known as service intensity. It's quantity of time needed to proceed one incoming request",
+  "channelsQuantityDescription": "Quantity of channels (or maintenance devices in other words) proceeding incoming requests",
+  "pendingCapacityDescription": "Also known as buffer size. It's quantity of requests that can stay in system waiting for proceeding. Imagine it like amount of people that waiting their turn in a cashier queue in a store for example",
+  "loadFactorDescription": "<p> $$\\rho = \\frac{\\lambda}{m \\mu } $$ where <br> \\(m\\) - channels quantity <br> \\(\\mu\\) - service time </p>",
+  "absoluteThroughput": "Absolute throughput",
+  "relativeThroughput": "Relative throughput",
+  "where": "Where",
+  "reject": "reject",
+  "finite": "Finite",
+  "infinite": "Infinite",
+  "constant": "Constant",
+  "queue": "Queue",
+  "pZeroDescription": "Probability indicating that system is in zero state",
+  "PnmDescription": "Probability indicating that system is in state of n+m. In other words, its when all system's maintenance devices (or channels = n) are busy and buffer size (or pending capacity = m) is filled out, so any new request will be immediately rejected",
+  "requestRejectionProbability": "request rejection probability",
+  "avgPendingTimeDescription": "<p> $$ \\overline{\\\\W} = \\frac{\\\\L}{\\\\A} $$ where <br> \\(L\\) - queue length <br> \\(A\\) - absolute throughput $$ A = \\lambda Q $$ <br> where \\(Q\\) - relative throughput $$ Q = 1 - P_{\\\\reject} $$ where <br> \\(P_{\\\\reject}\\) - probability of request rejection $$ P_{\\\\reject} = \\left[ \\begin{\\\\array}{\\\\cl} 0 &, \\ k = \\infty \\end{\\\\array} \\right. $$ </p>"
+
+
 }

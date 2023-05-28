@@ -169,6 +169,176 @@ class S {
       args: [],
     );
   }
+
+  /// `Quantity of incoming requests per unit time`
+  String get inputStreamIntensityDescription {
+    return Intl.message(
+      'Quantity of incoming requests per unit time',
+      name: 'inputStreamIntensityDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Also known as service intensity. It's quantity of time needed to proceed one incoming request`
+  String get serviceTimeDescription {
+    return Intl.message(
+      'Also known as service intensity. It\'s quantity of time needed to proceed one incoming request',
+      name: 'serviceTimeDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantity of channels (or maintenance devices in other words) proceeding incoming requests`
+  String get channelsQuantityDescription {
+    return Intl.message(
+      'Quantity of channels (or maintenance devices in other words) proceeding incoming requests',
+      name: 'channelsQuantityDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Also known as buffer size. It's quantity of requests that can stay in system waiting for proceeding. Imagine it like amount of people that waiting their turn in a cashier queue in a store for example`
+  String get pendingCapacityDescription {
+    return Intl.message(
+      'Also known as buffer size. It\'s quantity of requests that can stay in system waiting for proceeding. Imagine it like amount of people that waiting their turn in a cashier queue in a store for example',
+      name: 'pendingCapacityDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `<p> $$\rho = \frac{\lambda}{m \mu } $$ where <br> \(m\) - channels quantity <br> \(\mu\) - service time </p>`
+  String get loadFactorDescription {
+    return Intl.message(
+      '<p> \$\$\\rho = \\frac{\\lambda}{m \\mu } \$\$ where <br> \\(m\\) - channels quantity <br> \\(\\mu\\) - service time </p>',
+      name: 'loadFactorDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Absolute throughput`
+  String get absoluteThroughput {
+    return Intl.message(
+      'Absolute throughput',
+      name: 'absoluteThroughput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Relative throughput`
+  String get relativeThroughput {
+    return Intl.message(
+      'Relative throughput',
+      name: 'relativeThroughput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where`
+  String get where {
+    return Intl.message(
+      'Where',
+      name: 'where',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `reject`
+  String get reject {
+    return Intl.message(
+      'reject',
+      name: 'reject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finite`
+  String get finite {
+    return Intl.message(
+      'Finite',
+      name: 'finite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Infinite`
+  String get infinite {
+    return Intl.message(
+      'Infinite',
+      name: 'infinite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Constant`
+  String get constant {
+    return Intl.message(
+      'Constant',
+      name: 'constant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Queue`
+  String get queue {
+    return Intl.message(
+      'Queue',
+      name: 'queue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Probability indicating that system is in zero state`
+  String get pZeroDescription {
+    return Intl.message(
+      'Probability indicating that system is in zero state',
+      name: 'pZeroDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Probability indicating that system is in state of n+m. In other words, its when all system's maintenance devices (or channels = n) are busy and buffer size (or pending capacity = m) is filled out, so any new request will be immediately rejected`
+  String get PnmDescription {
+    return Intl.message(
+      'Probability indicating that system is in state of n+m. In other words, its when all system\'s maintenance devices (or channels = n) are busy and buffer size (or pending capacity = m) is filled out, so any new request will be immediately rejected',
+      name: 'PnmDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `request rejection probability`
+  String get requestRejectionProbability {
+    return Intl.message(
+      'request rejection probability',
+      name: 'requestRejectionProbability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `<p> $$ \overline{\\W} = \frac{\\L}{\\A} $$ where <br> \(L\) - queue length <br> \(A\) - absolute throughput $$ A = \lambda Q $$ <br> where \(Q\) - relative throughput $$ Q = 1 - P_{\\reject} $$ where <br> \(P_{\\reject}\) - probability of request rejection $$ P_{\\reject} = \left[ \begin{\\array}{\\cl} 0 &, \ k = \infty \end{\\array} \right. $$ </p>`
+  String get avgPendingTimeDescription {
+    return Intl.message(
+      '<p> \$\$ \\overline{\\\\W} = \\frac{\\\\L}{\\\\A} \$\$ where <br> \\(L\\) - queue length <br> \\(A\\) - absolute throughput \$\$ A = \\lambda Q \$\$ <br> where \\(Q\\) - relative throughput \$\$ Q = 1 - P_{\\\\reject} \$\$ where <br> \\(P_{\\\\reject}\\) - probability of request rejection \$\$ P_{\\\\reject} = \\left[ \\begin{\\\\array}{\\\\cl} 0 &, \\ k = \\infty \\end{\\\\array} \\right. \$\$ </p>',
+      name: 'avgPendingTimeDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

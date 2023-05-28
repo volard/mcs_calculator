@@ -22,27 +22,55 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "PnmDescription": MessageLookupByLibrary.simpleMessage(
+            "Вероятность того, что система находится в n+m состоянии. Другими словами, это когда все обслуживающие устройства (или каналы = n) заняты и длина очереди (или число мест ожидания = m) заполнена, поэтому любая новая заявка будет сразу отклонена"),
+        "absoluteThroughput": MessageLookupByLibrary.simpleMessage(
+            "Абсолютная пропускная способность"),
         "appName": MessageLookupByLibrary.simpleMessage("Калькулятор ВС"),
         "avgPendingTime":
             MessageLookupByLibrary.simpleMessage("Среднее время ожидания"),
+        "avgPendingTimeDescription": MessageLookupByLibrary.simpleMessage(
+            "<p> \$\$\\overline\'{\'W\'}\' = \\frac\'{\'L\'}\'\'{\'A\'}\'\$\$ where <br> \\(L\\) - queue length <br> \\(A\\) - absolute throughput \$\$ A = \\lambda Q \$\$ <br> where \\(Q\\) - relative throughput \$\$ Q = 1 - P_{\\\\reject} \$\$ </p>"),
         "channelsQuantity":
             MessageLookupByLibrary.simpleMessage("Количество каналов"),
+        "channelsQuantityDescription": MessageLookupByLibrary.simpleMessage(
+            "Количество каналов (или обслуживающих устройств) обрабатывающих входящие заявки"),
+        "constant": MessageLookupByLibrary.simpleMessage("Константа"),
+        "finite": MessageLookupByLibrary.simpleMessage("Конечна"),
+        "infinite": MessageLookupByLibrary.simpleMessage("Бесконечна"),
         "inputStreamIntensity": MessageLookupByLibrary.simpleMessage(
             "Интенсивность входного потока"),
+        "inputStreamIntensityDescription": MessageLookupByLibrary.simpleMessage(
+            "Количество поступающих заявок в единицу времени"),
         "loadFactor":
             MessageLookupByLibrary.simpleMessage("Коэфициент загрузки системы"),
+        "loadFactorDescription": MessageLookupByLibrary.simpleMessage(
+            "<p> \$\$\\rho = \\frac{\\lambda}{m \\mu}\$\$ where <br> \\(m\\) - количество каналов <br> \\(\\mu\\) - время обслуживания </p>"),
         "noInputErrorLabelText":
             MessageLookupByLibrary.simpleMessage("Введите значение"),
+        "pZeroDescription": MessageLookupByLibrary.simpleMessage(
+            "Вероятность того, что система находится в нулевом состоянии"),
         "pendingCapacity":
             MessageLookupByLibrary.simpleMessage("Число мест ожидания"),
+        "pendingCapacityDescription": MessageLookupByLibrary.simpleMessage(
+            "Известный также, как размер буфера или число мест ожидания. Это количество заявок, которые могут оставаться в системе, ожидая их очереди на обработку. Представьте это, как количество человек, которые могут стоять в очереди на кассу, например"),
+        "queue": MessageLookupByLibrary.simpleMessage("Очередь"),
         "queueLength": MessageLookupByLibrary.simpleMessage("Длина очереди"),
+        "reject": MessageLookupByLibrary.simpleMessage("отказ"),
+        "relativeThroughput": MessageLookupByLibrary.simpleMessage(
+            "Относительная пропускная способность"),
+        "requestRejectionProbability":
+            MessageLookupByLibrary.simpleMessage("вероятность отказа заявки"),
         "requestsQuantity":
             MessageLookupByLibrary.simpleMessage("Количество заявок"),
         "serviceTime":
             MessageLookupByLibrary.simpleMessage("Время обслуживания"),
+        "serviceTimeDescription": MessageLookupByLibrary.simpleMessage(
+            "Также известный, как интенсивность обслуживания. Это количество времени, необходимое для обработки одной входящей заявки"),
         "stateProbabilities":
             MessageLookupByLibrary.simpleMessage("Вероятности состояний"),
         "stateProbability":
-            MessageLookupByLibrary.simpleMessage("Вероятность состояния")
+            MessageLookupByLibrary.simpleMessage("Вероятность состояния"),
+        "where": MessageLookupByLibrary.simpleMessage("Где")
       };
 }

@@ -8,7 +8,7 @@ Widget csParamTextField(
     required int maxLengthCustom,
     TextInputType keyboardTypeCustom = TextInputType.text}) {
   return Container(
-    margin: const EdgeInsets.only(bottom: 20),
+    margin: const EdgeInsets.only(bottom: 10),
     child: Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[

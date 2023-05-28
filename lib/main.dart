@@ -8,11 +8,13 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 
 AdaptiveThemeMode? savedThemeMode;
 
+
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   savedThemeMode = await AdaptiveTheme.getThemeMode();
   runApp(
-    ChangeNotifierProvider(
+    ChangeNotifierProvider<ComputingSystemModel>(
       create: (context) => ComputingSystemModel(),
       child: const MyApp(),
     ),
@@ -46,14 +48,16 @@ class _MyAppState extends State<MyApp> {
       light: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.red,
+        useMaterial3: true,
         hintColor: Colors.amber,
       ),
       dark: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.red,
+        useMaterial3: true,
         hintColor: Colors.amber,
       ),
-      initial: AdaptiveThemeMode.light,
+      initial: savedThemeMode ?? AdaptiveThemeMode.light,
       builder: (theme, darkTheme) => MaterialApp(
         title: "MCS calculator",
         localizationsDelegates: const [
@@ -63,16 +67,8 @@ class _MyAppState extends State<MyApp> {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        theme: ThemeData(
-          colorSchemeSeed: Colors.indigo,
-          useMaterial3: true,
-          brightness: Brightness.light,
-        ),
-        darkTheme: ThemeData(
-          colorSchemeSeed: Colors.blue,
-          useMaterial3: true,
-          brightness: Brightness.dark,
-        ),
+        theme: theme,
+        darkTheme: darkTheme,
         home: const HomePage(),
         debugShowCheckedModeBanner: false,
         locale: _locale,

@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:mcs_calculator/main.dart';
 import '../generated/l10n.dart';
@@ -23,7 +24,8 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 MyApp.setLocale(context, const Locale("en"));
               },
-              icon: const Icon(Icons.language))
+              icon: const Icon(Icons.language)),
+          IconButton(onPressed: (){AdaptiveTheme.of(context).toggleThemeMode();}, icon: const Icon(Icons.ac_unit)),
         ],
       ),
       body: SingleChildScrollView(
@@ -38,12 +40,12 @@ class _HomePageState extends State<HomePage> {
               ResultsPane(
                 key: UniqueKey(),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 44),
-                child: DynamicLineChartWidget(
-                  key: UniqueKey(),
-                ),
-              )
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 44),
+              //   child: DynamicLineChartWidget(
+              //     key: UniqueKey(),
+              //   ),
+              // )
             ],
           ),
         ),

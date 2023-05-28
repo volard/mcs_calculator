@@ -22,25 +22,53 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "PnmDescription": MessageLookupByLibrary.simpleMessage(
+            "Probability indicating that system is in state of n+m. In other words, its when all system\'s maintenance devices (or channels = n) are busy and buffer size (or pending capacity = m) is filled out, so any new request will be immediately rejected"),
+        "absoluteThroughput":
+            MessageLookupByLibrary.simpleMessage("Absolute throughput"),
         "appName": MessageLookupByLibrary.simpleMessage("MSC calculator"),
         "avgPendingTime":
             MessageLookupByLibrary.simpleMessage("Average pending time"),
+        "avgPendingTimeDescription": MessageLookupByLibrary.simpleMessage(
+            "<p> \$\$ \\overline{\\\\W} = \\frac{\\\\L}{\\\\A} \$\$ where <br> \\(L\\) - queue length <br> \\(A\\) - absolute throughput \$\$ A = \\lambda Q \$\$ <br> where \\(Q\\) - relative throughput \$\$ Q = 1 - P_{\\\\reject} \$\$ where <br> \\(P_{\\\\reject}\\) - probability of request rejection \$\$ P_{\\\\reject} = \\left[ \\begin{\\\\array}{\\\\cl} 0 &, \\ k = \\infty \\end{\\\\array} \\right. \$\$ </p>"),
         "channelsQuantity":
             MessageLookupByLibrary.simpleMessage("Channels quantity"),
+        "channelsQuantityDescription": MessageLookupByLibrary.simpleMessage(
+            "Quantity of channels (or maintenance devices in other words) proceeding incoming requests"),
+        "constant": MessageLookupByLibrary.simpleMessage("Constant"),
+        "finite": MessageLookupByLibrary.simpleMessage("Finite"),
+        "infinite": MessageLookupByLibrary.simpleMessage("Infinite"),
         "inputStreamIntensity":
             MessageLookupByLibrary.simpleMessage("Input stream factor"),
+        "inputStreamIntensityDescription": MessageLookupByLibrary.simpleMessage(
+            "Quantity of incoming requests per unit time"),
         "loadFactor": MessageLookupByLibrary.simpleMessage("Load factor"),
+        "loadFactorDescription": MessageLookupByLibrary.simpleMessage(
+            "<p> \$\$\\rho = \\frac{\\lambda}{m \\mu } \$\$ where <br> \\(m\\) - channels quantity <br> \\(\\mu\\) - service time </p>"),
         "noInputErrorLabelText":
             MessageLookupByLibrary.simpleMessage("Please input value"),
+        "pZeroDescription": MessageLookupByLibrary.simpleMessage(
+            "Probability indicating that system is in zero state"),
         "pendingCapacity":
             MessageLookupByLibrary.simpleMessage("Pending capacity"),
+        "pendingCapacityDescription": MessageLookupByLibrary.simpleMessage(
+            "Also known as buffer size. It\'s quantity of requests that can stay in system waiting for proceeding. Imagine it like amount of people that waiting their turn in a cashier queue in a store for example"),
+        "queue": MessageLookupByLibrary.simpleMessage("Queue"),
         "queueLength": MessageLookupByLibrary.simpleMessage("Queue length"),
+        "reject": MessageLookupByLibrary.simpleMessage("reject"),
+        "relativeThroughput":
+            MessageLookupByLibrary.simpleMessage("Relative throughput"),
+        "requestRejectionProbability": MessageLookupByLibrary.simpleMessage(
+            "request rejection probability"),
         "requestsQuantity":
             MessageLookupByLibrary.simpleMessage("Requests quantity"),
         "serviceTime": MessageLookupByLibrary.simpleMessage("Service time"),
+        "serviceTimeDescription": MessageLookupByLibrary.simpleMessage(
+            "Also known as service intensity. It\'s quantity of time needed to proceed one incoming request"),
         "stateProbabilities":
             MessageLookupByLibrary.simpleMessage("States probabilities"),
         "stateProbability":
-            MessageLookupByLibrary.simpleMessage("State probability")
+            MessageLookupByLibrary.simpleMessage("State probability"),
+        "where": MessageLookupByLibrary.simpleMessage("Where")
       };
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mcs_calculator/pages/modal_pages/input_stream_intensity.dart';
-import 'package:mcs_calculator/pages/modal_pages/load_factor.dart';
 import 'package:mcs_calculator/presentation/components/cs_param_textfield.dart';
+import 'package:mcs_calculator/presentation/components/simple_tex_view.dart';
 import 'package:mcs_calculator/viewmodels/cs_model.dart';
 import 'package:provider/provider.dart';
 import 'package:mcs_calculator/generated/l10n.dart';
@@ -35,30 +34,76 @@ class _InputFormWidgetState extends State<InputFormWidget> {
         children: <Widget>[
           csParamTextField(
               onChangeTextHandler: onTextChangedHandler,
+              labelTextCustom: S.of(context).inputStreamIntensity,
               onHelpIconPressedHandler: () {
                 showModalBottomSheet(
-                    context: context,
-                    builder: (context) => inputStreamIntensityPage);
+                  context: context,
+                  enableDrag: true,
+                  showDragHandle: true,
+                  isDismissible: true,
+                  builder: (BuildContext context) {
+                    return simpleTexView(
+                        context: context,
+                        content: S.of(context).inputStreamIntensityDescription);
+                  },
+                );
               },
-              labelTextCustom: S.of(context).inputStreamIntensity,
               maxLengthCustom: 4,
               keyboardTypeCustom: TextInputType.number),
-
           csParamTextField(
               onChangeTextHandler: onTextChangedHandler,
               onHelpIconPressedHandler: () {
                 showModalBottomSheet(
-                    context: context,
-                    enableDrag: true,
-                    showDragHandle: true,
-                    isDismissible: true,
-                    builder: (BuildContext context) {  return loadFactorPage(context: context);}
+                  context: context,
+                  enableDrag: true,
+                  showDragHandle: true,
+                  isDismissible: true,
+                  builder: (BuildContext context) {
+                    return simpleTexView(
+                        context: context,
+                        content: S.of(context).serviceTimeDescription);
+                  },
                 );
               },
-              labelTextCustom: S.of(context).loadFactor,
+              labelTextCustom: S.of(context).serviceTime,
               maxLengthCustom: 4,
               keyboardTypeCustom: TextInputType.number),
-
+          csParamTextField(
+              onChangeTextHandler: onTextChangedHandler,
+              labelTextCustom: S.of(context).channelsQuantity,
+              onHelpIconPressedHandler: () {
+                showModalBottomSheet(
+                  context: context,
+                  enableDrag: true,
+                  showDragHandle: true,
+                  isDismissible: true,
+                  builder: (BuildContext context) {
+                    return simpleTexView(
+                        context: context,
+                        content: S.of(context).channelsQuantityDescription);
+                  },
+                );
+              },
+              maxLengthCustom: 4,
+              keyboardTypeCustom: TextInputType.number),
+          csParamTextField(
+              onChangeTextHandler: onTextChangedHandler,
+              labelTextCustom: S.of(context).pendingCapacity,
+              onHelpIconPressedHandler: () {
+                showModalBottomSheet(
+                  context: context,
+                  enableDrag: true,
+                  showDragHandle: true,
+                  isDismissible: true,
+                  builder: (BuildContext context) {
+                    return simpleTexView(
+                        context: context,
+                        content: S.of(context).pendingCapacityDescription);
+                  },
+                );
+              },
+              maxLengthCustom: 4,
+              keyboardTypeCustom: TextInputType.number),
         ],
       ),
     );
