@@ -22,6 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "MSS": MessageLookupByLibrary.simpleMessage("MSS"),
+        "P_queue": MessageLookupByLibrary.simpleMessage("Queuing probability"),
+        "PiThDescription": MessageLookupByLibrary.simpleMessage(
+            "Probability indicating that system is in state of i, i < n + m"),
         "PnmDescription": MessageLookupByLibrary.simpleMessage(
             "Probability indicating that system is in state of n+m. In other words, its when all system\'s maintenance devices (or channels = n) are busy and buffer size (or pending capacity = m) is filled out, so any new request will be immediately rejected"),
         "absoluteThroughput":
@@ -29,8 +33,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("MSC calculator"),
         "avgPendingTime":
             MessageLookupByLibrary.simpleMessage("Average pending time"),
-        "avgPendingTimeDescription": MessageLookupByLibrary.simpleMessage(
-            "<p> \$\$ \\overline{\\\\W} = \\frac{\\\\L}{\\\\A} \$\$ where <br> \\(L\\) - queue length <br> \\(A\\) - absolute throughput \$\$ A = \\lambda Q \$\$ <br> where \\(Q\\) - relative throughput \$\$ Q = 1 - P_{\\\\reject} \$\$ where <br> \\(P_{\\\\reject}\\) - probability of request rejection \$\$ P_{\\\\reject} = \\left[ \\begin{\\\\array}{\\\\cl} 0 &, \\ k = \\infty \\end{\\\\array} \\right. \$\$ </p>"),
         "channelsQuantity":
             MessageLookupByLibrary.simpleMessage("Channels quantity"),
         "channelsQuantityDescription": MessageLookupByLibrary.simpleMessage(
@@ -43,8 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "inputStreamIntensityDescription": MessageLookupByLibrary.simpleMessage(
             "Quantity of incoming requests per unit time"),
         "loadFactor": MessageLookupByLibrary.simpleMessage("Load factor"),
-        "loadFactorDescription": MessageLookupByLibrary.simpleMessage(
-            "<p> \$\$\\rho = \\frac{\\lambda}{m \\mu } \$\$ where <br> \\(m\\) - channels quantity <br> \\(\\mu\\) - service time </p>"),
+        "massiveServiceSystem":
+            MessageLookupByLibrary.simpleMessage("Mass Service System"),
         "noInputErrorLabelText":
             MessageLookupByLibrary.simpleMessage("Please input value"),
         "pZeroDescription": MessageLookupByLibrary.simpleMessage(

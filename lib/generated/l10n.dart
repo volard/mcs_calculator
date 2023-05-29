@@ -150,6 +150,16 @@ class S {
     );
   }
 
+  /// `Probability indicating that system is in state of i, i < n + m`
+  String get PiThDescription {
+    return Intl.message(
+      'Probability indicating that system is in state of i, i < n + m',
+      name: 'PiThDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `MSC calculator`
   String get appName {
     return Intl.message(
@@ -205,16 +215,6 @@ class S {
     return Intl.message(
       'Also known as buffer size. It\'s quantity of requests that can stay in system waiting for proceeding. Imagine it like amount of people that waiting their turn in a cashier queue in a store for example',
       name: 'pendingCapacityDescription',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `<p> $$\rho = \frac{\lambda}{m \mu } $$ where <br> \(m\) - channels quantity <br> \(\mu\) - service time </p>`
-  String get loadFactorDescription {
-    return Intl.message(
-      '<p> \$\$\\rho = \\frac{\\lambda}{m \\mu } \$\$ where <br> \\(m\\) - channels quantity <br> \\(\\mu\\) - service time </p>',
-      name: 'loadFactorDescription',
       desc: '',
       args: [],
     );
@@ -300,6 +300,16 @@ class S {
     );
   }
 
+  /// `Queuing probability`
+  String get P_queue {
+    return Intl.message(
+      'Queuing probability',
+      name: 'P_queue',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Probability indicating that system is in zero state`
   String get pZeroDescription {
     return Intl.message(
@@ -330,11 +340,21 @@ class S {
     );
   }
 
-  /// `<p> $$ \overline{\\W} = \frac{\\L}{\\A} $$ where <br> \(L\) - queue length <br> \(A\) - absolute throughput $$ A = \lambda Q $$ <br> where \(Q\) - relative throughput $$ Q = 1 - P_{\\reject} $$ where <br> \(P_{\\reject}\) - probability of request rejection $$ P_{\\reject} = \left[ \begin{\\array}{\\cl} 0 &, \ k = \infty \end{\\array} \right. $$ </p>`
-  String get avgPendingTimeDescription {
+  /// `Mass Service System`
+  String get massiveServiceSystem {
     return Intl.message(
-      '<p> \$\$ \\overline{\\\\W} = \\frac{\\\\L}{\\\\A} \$\$ where <br> \\(L\\) - queue length <br> \\(A\\) - absolute throughput \$\$ A = \\lambda Q \$\$ <br> where \\(Q\\) - relative throughput \$\$ Q = 1 - P_{\\\\reject} \$\$ where <br> \\(P_{\\\\reject}\\) - probability of request rejection \$\$ P_{\\\\reject} = \\left[ \\begin{\\\\array}{\\\\cl} 0 &, \\ k = \\infty \\end{\\\\array} \\right. \$\$ </p>',
-      name: 'avgPendingTimeDescription',
+      'Mass Service System',
+      name: 'massiveServiceSystem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MSS`
+  String get MSS {
+    return Intl.message(
+      'MSS',
+      name: 'MSS',
       desc: '',
       args: [],
     );

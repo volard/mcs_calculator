@@ -35,7 +35,7 @@ class _ResultsPaneState extends State<ResultsPane> {
                       builder: (BuildContext context) {
                         return simpleTexView(
                             context: context,
-                            content: S.of(context).loadFactorDescription);
+                            content: loadFactorDescription(context));
                       },
                     );
                   },
@@ -63,15 +63,18 @@ class _ResultsPaneState extends State<ResultsPane> {
                                   avgPendingTimeDescription(context),
                                   absoluteThroughputDescription(context),
                                   relativeThroughputDescription(context),
-                                  requestRejectionProbabilityDescription(context),
+                                  requestRejectionProbabilityDescription(
+                                      context),
                                   PnmDescription(context),
                                   pZeroDescription(context)
                                 ],
                                 [
                                   avgPendingTimeDescription(context),
                                   absoluteThroughputDescription(context),
-                                  relativeThroughputDescriptionInfinity(context),
-                                  requestRejectionProbabilityDescriptionInfinity(context),
+                                  relativeThroughputDescriptionInfinity(
+                                      context),
+                                  requestRejectionProbabilityDescriptionInfinity(
+                                      context),
                                   PnmDescription(context),
                                   pZeroDescriptionInfinity(context)
                                 ]
@@ -82,7 +85,116 @@ class _ResultsPaneState extends State<ResultsPane> {
                       ),
                     );
                   },
-                  trailing: const Text("4,38"))
+                  trailing: const Text("4,38")),
+              ListTile(
+                  title: Text(S.of(context).queueLength),
+                  onTap: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      context: context,
+                      showDragHandle: true,
+                      builder: (context) => DraggableScrollableSheet(
+                        maxChildSize: Constants.maxChildSizeScrollableSheet,
+                        expand: false,
+                        builder: (context, scrollController) =>
+                            SingleChildScrollView(
+                          controller: scrollController,
+                          child: Column(
+                            children: [
+                              EquationPipeline(splitButtonNames: [
+                                S.of(context).finite,
+                                S.of(context).infinite
+                              ], pipelines: [
+                                [
+                                  queueLengthDescription(context),
+                                  pZeroDescription(context)
+                                ],
+                                [
+                                  queueLengthDescriptionInfinity(context),
+                                  P_queueDescription(context),
+                                  pZeroDescriptionInfinity(context)
+                                ]
+                              ]),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  trailing: const Text("4,38")),
+              ListTile(
+                  title: Text(S.of(context).requestsQuantity),
+                  onTap: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      context: context,
+                      showDragHandle: true,
+                      builder: (context) => DraggableScrollableSheet(
+                        maxChildSize: Constants.maxChildSizeScrollableSheet,
+                        expand: false,
+                        builder: (context, scrollController) =>
+                            SingleChildScrollView(
+                          controller: scrollController,
+                          child: Column(
+                            children: [
+                              EquationPipeline(splitButtonNames: [
+                                S.of(context).finite,
+                                S.of(context).infinite
+                              ], pipelines: [
+                                [
+                                  requestsQuantityDescription(context),
+                                  queueLengthDescription(context),
+                                  pZeroDescription(context),
+                                  relativeThroughputDescription(context),
+                                  requestRejectionProbabilityDescription(
+                                      context),
+                                  PnmDescription(context),
+                                  pZeroDescription(context)
+                                ],
+                                [
+                                  requestsQuantityDescription(context),
+                                  queueLengthDescriptionInfinity(context),
+                                  P_queueDescription(context),
+                                  pZeroDescriptionInfinity(context),
+                                  relativeThroughputDescriptionInfinity(
+                                      context),
+                                  requestRejectionProbabilityDescriptionInfinity(
+                                      context)
+                                ]
+                              ]),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  trailing: const Text("4,38")),
+              ListTile(
+                  title: Text(S.of(context).stateProbabilities),
+                  trailing: IconButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          showDragHandle: true,
+                          builder: (context) {
+                            return Text(S.of(context).PiThDescription);
+                          });
+                    },
+                    icon: const Icon(Icons.info_outlined),
+                  ),
+                  onTap: () {
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        showDragHandle: true,
+                        builder: (context) {
+                          ListView(){
+                            
+                          }
+                        });
+                  },
+                ),
             ],
           ),
         );

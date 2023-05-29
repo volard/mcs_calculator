@@ -12,7 +12,16 @@ String avgPendingTimeDescription(BuildContext context) => r"""
 </p> 
 """;
 
+String loadFactorDescription(BuildContext context) => r"""
+<p>
 
+  $$\rho = \frac{\lambda}{m \mu}$$ <br>
+  
+  \(m\) - """ + S.of(context).channelsQuantity + r"""<br>
+  \(\mu\) - """ + S.of(context).serviceTime + r"""
+
+</p>
+""";
 
 String absoluteThroughputDescription(BuildContext context) => r"""
 <p> 
@@ -94,7 +103,8 @@ String pZeroDescriptionInfinity(BuildContext context) => r"""
 String queueLengthDescription(BuildContext context) => r"""
 <p>
 
-  $$ \overline L_{""" + S.of(context).queue + r"""} = P_0 \frac{\rho^{n+1}}{n!n}\cdot \frac{\Big(1 - \big( \frac{\rho}{n} \big)^m \Big) \Big( m + 1 - m \frac{\rho}{n} \Big)}{\Big( 1 - \frac{\rho}{n} \Big)^2} $$
+  $$ \begin{array}{cl} \overline{L_{""" + S.of(context).queue + r"""}} = P_0 \frac{\rho^{n+1}}{n!n}\cdot \frac{\Big(1 - \big( \frac{\rho}{n} \big)^m \Big)}{\Big( 1 - \frac{\rho}{n} \Big)^2} \cdot \\
+   \cdot \Big( m + 1 - m \frac{\rho}{n} \Big) \end{array} $$
 
   \(n\) - """ + S.of(context).channelsQuantity + r"""<br>
   \(m\) - """ + S.of(context).pendingCapacity + r"""<br>
@@ -103,15 +113,37 @@ String queueLengthDescription(BuildContext context) => r"""
 </p>
 """;
 
+//$$ \begin{array}{cl} \overline{L_{""" + S.of(context).queue + r"""}} = P_0 \frac{\rho^{n+1}}{n!n}\cdot \frac{\Big(1 - \big( \frac{\rho}{n} \big)^m \Big)}{\Big( 1 - \frac{\rho}{n} \Big)^2} \\\dot \Big( m + 1 - m \frac{\rho}{n} \Big) \end{array} $$
 
 String queueLengthDescriptionInfinity(BuildContext context) => r"""
 <p>
 
-  $$ \overline L_{""" + S.of(context).queue + r"""} = \frac{n}{n - \rho} P_{""" + S.of(context).queue + r"""} $$
+  $$ \overline{L_{""" + S.of(context).queue + r"""}} = \frac{n}{n - \rho} P_{""" + S.of(context).queue + r"""} $$
 
   \(n\) - """ + S.of(context).channelsQuantity + r"""<br>
   \(\rho\) - """ + S.of(context).loadFactor + r"""<br>
-  \(P_{""" + S.of(context).queue + r"""}\) - """ + S.of(context).
-
+  \(P_{""" + S.of(context).queue + r"""}\) - """ + S.of(context).P_queue + r"""
 </p>
+""";
+
+String P_queueDescription(BuildContext context) => r"""
+<p>
+
+  $$ P_{""" + S.of(context).queue + r"""} = \frac{\rho^{n+1}}{n!(n-\rho)}P_0 $$
+
+  \(n\) - """ + S.of(context).channelsQuantity + r"""<br>
+  \(\rho\) - """ + S.of(context).loadFactor + r"""
+</p>    
+""";
+
+String requestsQuantityDescription(BuildContext context) => r"""
+<p>    
+    
+    $$ \overline{L_{""" + S.of(context).MSS + r"""}} = \overline{L_{""" + S.of(context).queue + r"""}} + \rho Q $$
+    
+    \(\overline{L_{""" + S.of(context).queue + r"""}}\) - """ + S.of(context).queueLength + r"""<br>
+    \(\rho\) - """ + S.of(context).loadFactor + r"""<br>
+    \(Q\) - """ + S.of(context).relativeThroughput + r"""
+    
+</p> 
 """;

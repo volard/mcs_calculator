@@ -22,15 +22,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "PnmDescription": MessageLookupByLibrary.simpleMessage(
+        "MSS": MessageLookupByLibrary.simpleMessage("СМО"),
+        "P_queue": MessageLookupByLibrary.simpleMessage(
+            "Вероятность образования очереди"),
+        "PiThDescription": MessageLookupByLibrary.simpleMessage(
             "Вероятность того, что система находится в n+m состоянии. Другими словами, это когда все обслуживающие устройства (или каналы = n) заняты и длина очереди (или число мест ожидания = m) заполнена, поэтому любая новая заявка будет сразу отклонена"),
+        "PnmDescription": MessageLookupByLibrary.simpleMessage(
+            "Вероятность того, что система находится в i состоянии, i < n + m"),
         "absoluteThroughput": MessageLookupByLibrary.simpleMessage(
             "Абсолютная пропускная способность"),
         "appName": MessageLookupByLibrary.simpleMessage("Калькулятор ВС"),
         "avgPendingTime":
             MessageLookupByLibrary.simpleMessage("Среднее время ожидания"),
-        "avgPendingTimeDescription": MessageLookupByLibrary.simpleMessage(
-            "<p> \$\$\\overline\'{\'W\'}\' = \\frac\'{\'L\'}\'\'{\'A\'}\'\$\$ where <br> \\(L\\) - queue length <br> \\(A\\) - absolute throughput \$\$ A = \\lambda Q \$\$ <br> where \\(Q\\) - relative throughput \$\$ Q = 1 - P_{\\\\reject} \$\$ </p>"),
         "channelsQuantity":
             MessageLookupByLibrary.simpleMessage("Количество каналов"),
         "channelsQuantityDescription": MessageLookupByLibrary.simpleMessage(
@@ -44,8 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Количество поступающих заявок в единицу времени"),
         "loadFactor":
             MessageLookupByLibrary.simpleMessage("Коэфициент загрузки системы"),
-        "loadFactorDescription": MessageLookupByLibrary.simpleMessage(
-            "<p> \$\$\\rho = \\frac{\\lambda}{m \\mu}\$\$ where <br> \\(m\\) - количество каналов <br> \\(\\mu\\) - время обслуживания </p>"),
+        "massiveServiceSystem": MessageLookupByLibrary.simpleMessage(
+            "Система массового обслуживания"),
         "noInputErrorLabelText":
             MessageLookupByLibrary.simpleMessage("Введите значение"),
         "pZeroDescription": MessageLookupByLibrary.simpleMessage(
