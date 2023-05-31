@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import '../../generated/l10n.dart';
 
+const defaultMaxLength = 7;
+const defaultTextInputType = TextInputType.numberWithOptions(decimal: true);
+
 Widget csParamTextField(
     {required void Function(String) onChangeTextHandler,
     required String labelTextCustom,
     required BuildContext context,
     required Widget Function(BuildContext context) helpInformationBuilder,
     String? customInitialValue,
-    int maxLengthCustom = 4,
-    TextInputType keyboardTypeCustom =
-        const TextInputType.numberWithOptions(decimal: true)}) {
+    int maxLengthCustom = defaultMaxLength,
+    TextInputType keyboardTypeCustom = defaultTextInputType}) {
   return Container(
-    margin: const EdgeInsets.only(bottom: 10),
+    margin: const EdgeInsets.only(bottom: 20),
     child: Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[
         TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           key: UniqueKey(),
           initialValue: customInitialValue,
           maxLength: maxLengthCustom,

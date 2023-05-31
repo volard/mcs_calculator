@@ -27,18 +27,22 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 
-  static void setLocale(BuildContext context, Locale newLocale) {
+  // TODO add more locales
+  static void toggleLocale(BuildContext context) {
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
-    state?.setLocale(newLocale);
+    if(state?.locale?.languageCode == "ru"){
+      state?.setLocale(const Locale("en"));
+    }
+    state?.setLocale(const Locale("ru"));
   }
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale? _locale;
+  Locale? locale;
 
   setLocale(Locale locale) {
     setState(() {
-      _locale = locale;
+      locale = locale;
     });
   }
 
@@ -71,7 +75,7 @@ class _MyAppState extends State<MyApp> {
         darkTheme: darkTheme,
         home: const HomePage(),
         debugShowCheckedModeBanner: false,
-        locale: _locale,
+        locale: locale,
       ),
     );
   }

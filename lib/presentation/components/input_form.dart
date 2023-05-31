@@ -37,9 +37,7 @@ class _InputFormWidgetState extends State<InputFormWidget> {
               context: context,
               onChangeTextHandler: (value) {
                 Provider.of<ComputingSystemModel>(context, listen: false)
-                    .inputStreamIntensity = double.parse(value);
-
-                if(value.isEmpty)
+                    .inputStreamIntensity = double.tryParse(value);
               },
               customInitialValue:
                   Provider.of<ComputingSystemModel>(context, listen: false)
@@ -55,7 +53,7 @@ class _InputFormWidgetState extends State<InputFormWidget> {
               context: context,
               onChangeTextHandler: (value) {
                 Provider.of<ComputingSystemModel>(context, listen: false).serviceTime =
-                    double.parse(value);
+                    double.tryParse(value);
               },
               helpInformationBuilder: (BuildContext context) {
                 return simpleTexView(
@@ -71,7 +69,7 @@ class _InputFormWidgetState extends State<InputFormWidget> {
             context: context,
             onChangeTextHandler: (value) {
               Provider.of<ComputingSystemModel>(context, listen: false).channelsQuantity =
-                  double.parse(value);
+                  double.tryParse(value);
             },
             customInitialValue:
                 Provider.of<ComputingSystemModel>(context, listen: false)
@@ -88,7 +86,7 @@ class _InputFormWidgetState extends State<InputFormWidget> {
               context: context,
               onChangeTextHandler: (value) {
                 Provider.of<ComputingSystemModel>(context, listen: false)
-                    .pendingCapacity = double.parse(value);
+                    .pendingCapacity = double.tryParse(value);
               },
               customInitialValue:
                   Provider.of<ComputingSystemModel>(context, listen: false)

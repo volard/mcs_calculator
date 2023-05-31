@@ -359,6 +359,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Not all fields are filled`
+  String get notAllFieldsFilledException {
+    return Intl.message(
+      'Not all fields are filled',
+      name: 'notAllFieldsFilledException',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

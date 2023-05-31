@@ -51,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Система массового обслуживания"),
         "noInputErrorLabelText":
             MessageLookupByLibrary.simpleMessage("Введите значение"),
+        "notAllFieldsFilledException":
+            MessageLookupByLibrary.simpleMessage("Не все поля заполнены"),
         "pZeroDescription": MessageLookupByLibrary.simpleMessage(
             "Вероятность того, что система находится в нулевом состоянии"),
         "pendingCapacity":

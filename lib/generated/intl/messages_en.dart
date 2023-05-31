@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mass Service System"),
         "noInputErrorLabelText":
             MessageLookupByLibrary.simpleMessage("Please input value"),
+        "notAllFieldsFilledException":
+            MessageLookupByLibrary.simpleMessage("Not all fields are filled"),
         "pZeroDescription": MessageLookupByLibrary.simpleMessage(
             "Probability indicating that system is in zero state"),
         "pendingCapacity":

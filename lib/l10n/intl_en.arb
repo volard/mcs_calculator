@@ -30,5 +30,6 @@
   "PnmDescription": "Probability indicating that system is in state of n+m. In other words, its when all system's maintenance devices (or channels = n) are busy and buffer size (or pending capacity = m) is filled out, so any new request will be immediately rejected",
   "requestRejectionProbability": "request rejection probability",
   "massiveServiceSystem": "Mass Service System",
-  "MSS": "MSS"
+  "MSS": "MSS",
+  "notAllFieldsFilledException": "Not all fields are filled"
 }

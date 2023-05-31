@@ -4,6 +4,7 @@ import 'package:mcs_calculator/main.dart';
 import 'package:mcs_calculator/viewmodels/cs_model.dart';
 import 'package:provider/provider.dart';
 import '../generated/l10n.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../presentation/components/dynamic_line_chart_widget.dart';
 import '../presentation/components/input_form.dart';
 import '../presentation/components/results_panel.dart';
@@ -16,25 +17,77 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late IconData themeIcon;
+  // TODO add language icon -> check current language -> implement sharePreferences
+
   @override
   Widget build(BuildContext context) {
+
+    if (AdaptiveTheme.of(context).theme == AdaptiveTheme.of(context).darkTheme){
+      themeIcon = Icons.light_mode;
+    } else {
+      themeIcon = Icons.dark_mode;
+    }
+
+
+
+    void toggleTheme(){
+      AdaptiveTheme.of(context).toggleThemeMode();
+
+      setState(() {
+        if (AdaptiveTheme.of(context).theme == AdaptiveTheme.of(context).darkTheme){
+          themeIcon = Icons.light_mode;
+        } else {
+          themeIcon = Icons.dark_mode;
+        }
+      });
+    }
+
+    void toggleLanguage(){
+      MyApp.toggleLocale(context);
+    }
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.calculate),
         onPressed: () {
+          bool isCalculationSuccessful = Provider.of<ComputingSystemModel>(context, listen: false).calculate();
 
-          print(Provider.of<ComputingSystemModel>(context, listen: false).isReadyToCalculate());
+          if(!isCalculationSuccessful){
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.red,
+                padding: const EdgeInsets.all(10.0,),
+                behavior: SnackBarBehavior.floating,
+                content: Text(
+                  textAlign: TextAlign.center,
+                     S.of(context).notAllFieldsFilledException),)
+            );
+          }
+
         },
       ),
       appBar: AppBar(
         title: Text(S.of(context).appName),
         actions: [
           IconButton(
-              onPressed: () {
-                MyApp.setLocale(context, const Locale("en"));
-              },
-              icon: const Icon(Icons.language)),
-          IconButton(onPressed: (){AdaptiveTheme.of(context).toggleThemeMode();}, icon: const Icon(Icons.ac_unit)),
+              onPressed: toggleLanguage,
+              icon:
+
+              Padding(
+                padding: const EdgeInsets.all(2.5),
+                child: FittedBox(
+                  child: SvgPicture.asset(
+                      "assets/english_usa.svg",
+                      semanticsLabel: 'Acme Logo',
+                      width: 40,
+                      height: 40,
+                  ),
+                ),
+              )),
+          IconButton(
+              onPressed: toggleTheme,
+              icon: Icon(themeIcon)),
         ],
       ),
       body: SingleChildScrollView(
