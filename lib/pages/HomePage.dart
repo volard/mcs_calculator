@@ -1,6 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:mcs_calculator/main.dart';
+import 'package:mcs_calculator/viewmodels/cs_model.dart';
+import 'package:provider/provider.dart';
 import '../generated/l10n.dart';
 import '../presentation/components/dynamic_line_chart_widget.dart';
 import '../presentation/components/input_form.dart';
@@ -17,6 +19,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.calculate),
+        onPressed: () {
+
+          print(Provider.of<ComputingSystemModel>(context, listen: false).isReadyToCalculate());
+        },
+      ),
       appBar: AppBar(
         title: Text(S.of(context).appName),
         actions: [

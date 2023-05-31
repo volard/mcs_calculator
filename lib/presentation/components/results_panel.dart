@@ -16,9 +16,8 @@ class ResultsPane extends StatefulWidget {
 class _ResultsPaneState extends State<ResultsPane> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<ComputingSystemModel>(
-      builder: (context, model, child) {
-        if (model.isCalculated) {
+
+        if (!Provider.of<ComputingSystemModel>(context, listen:false).isReadyToCalculate()) {
           return const Text("Ready to calculate");
         }
         return Card(
@@ -41,7 +40,7 @@ class _ResultsPaneState extends State<ResultsPane> {
                   },
                   trailing: Consumer<ComputingSystemModel>(
                       builder: (context, model, child) {
-                    return Text(model.rho.toString());
+                    return Text(model.loadFactor.toString());
                   })),
               ListTile(
                   title: Text(S.of(context).avgPendingTime),
@@ -90,7 +89,7 @@ class _ResultsPaneState extends State<ResultsPane> {
                   },
                   trailing: Consumer<ComputingSystemModel>(
                       builder: (context, model, child) {
-                    return Text(model.rho.toString());
+                    return Text(model.loadFactor.toString());
                   })),
               ListTile(
                   title: Text(S.of(context).queueLength),
@@ -190,13 +189,12 @@ class _ResultsPaneState extends State<ResultsPane> {
                   icon: const Icon(Icons.info_outlined),
                 ),
                 onTap: () {
-                  var localP_i =
-                      Provider.of<ComputingSystemModel>(context, listen: false)
-                          .P_i;
-                  if (localP_i == null) {
+                  var localP_is = Provider.of<ComputingSystemModel>(context, listen: false).pIs;
+                  if (localP_is.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Not calculated'),
+                        // TODO get rid of magic numbers
                         duration: Duration(milliseconds: 1500),
                         width: 280.0, // Width of the SnackBar.
                         padding: EdgeInsets.symmetric(
@@ -210,10 +208,10 @@ class _ResultsPaneState extends State<ResultsPane> {
                   }
 
                   List<ListTile> valuesList = [];
-                  for (int i = 0; i < localP_i.length; i++) {
+                  for (int i = 0; i < localP_is.length; i++) {
                     valuesList.add(ListTile(
                       title: Text("P[ $i ]"),
-                      trailing: Text(localP_i[i].toString()),
+                      trailing: Text(localP_is[i].toString()),
                     ));
                   }
                   showModalBottomSheet(
@@ -221,7 +219,7 @@ class _ResultsPaneState extends State<ResultsPane> {
                       context: context,
                       showDragHandle: true,
                       builder: (context) {
-                        ListView(
+                        return ListView(
                           padding: const EdgeInsets.all(8),
                           children: valuesList,
                         );
@@ -231,8 +229,6 @@ class _ResultsPaneState extends State<ResultsPane> {
             ],
           ),
         );
-      },
-    );
 
     //
   }
