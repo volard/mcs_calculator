@@ -3,21 +3,22 @@ import '../../generated/l10n.dart';
 
 Widget csParamTextField(
     {required void Function(String) onChangeTextHandler,
-    required void Function() onHelpIconPressedHandler,
     required String labelTextCustom,
-    required int maxLengthCustom,
-    TextInputType keyboardTypeCustom = TextInputType.text}) {
+    required BuildContext context,
+    required Widget Function(BuildContext context) helpInformationBuilder,
+    String? customInitialValue,
+    int maxLengthCustom = 4,
+    TextInputType keyboardTypeCustom =
+        const TextInputType.numberWithOptions(decimal: true)}) {
   return Container(
     margin: const EdgeInsets.only(bottom: 10),
     child: Stack(
       alignment: Alignment.topCenter,
       children: <Widget>[
         TextFormField(
-          // TODO change this to enum value in [ComputingSystemModel]
-          key: const Key('intensityInput'),
-
+          key: UniqueKey(),
+          initialValue: customInitialValue,
           maxLength: maxLengthCustom,
-
           keyboardType: keyboardTypeCustom,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
@@ -38,8 +39,15 @@ Widget csParamTextField(
           child: IconButton(
               iconSize: 30,
               icon: const Icon(Icons.info_outline),
-              onPressed: onHelpIconPressedHandler
-              ),
+              onPressed: (){
+                showModalBottomSheet(
+                  context: context,
+                  enableDrag: true,
+                  showDragHandle: true,
+                  isDismissible: true,
+                  builder: helpInformationBuilder,
+                );
+              }),
         ),
       ],
     ),

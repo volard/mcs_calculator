@@ -3,45 +3,49 @@ import 'package:flutter/foundation.dart';
 
 // Singleton considered
 class ComputingSystemModel extends ChangeNotifier{
-  ComputingSystemModel(); // TODO initialize params
+  ComputingSystemModel();
 
 
-  // TODO declare model's params
   bool isCalculated = false;
+  bool isReadyToCalculate() => (inputStreamIntensity != null) && (serviceTime != null) &&
+  (pendingCapacity != null) && (channelsQuantity != null);
+
 
   // ---------- INPUT
   // Input stream intensity
-  double? lambda;
+  double? inputStreamIntensity;
 
   // Service time
-  double mu = 1;
+  double serviceTime = 1;
 
   // Pending capacity
-  double? m;
+  double? pendingCapacity;
 
   // Channels quantity
-  double? n;
+  double? channelsQuantity;
 
 
   // ---------- OUTPUT
   // Load factor
-  double? rho;
+  double? loadFactor;
 
   // Queue length
-  double? L_queue;
+  double? queueLength;
 
   // Requests quantity
-  double? L_mss;
+  double? requestsQuantity;
 
   // Pending time
-  double? T;
+  double? pendingTime;
 
-  // P[i] state probability
-  double? P_zero;
-  List<double> P_is_inf = [];
-  List<double> P_is = [];
+  // P[0] state probability
+  double? pZero;
 
-  // TODO ENUM needed
+  // P[i] states probabilities with infinity requests quantity consideration
+  List<double> pIsInf = [];
+
+  // P[i] states probabilities
+  List<double> pIs = [];
 
 
   void calculate(){

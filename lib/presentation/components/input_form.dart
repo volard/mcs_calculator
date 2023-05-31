@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mcs_calculator/presentation/components/cs_param_textfield.dart';
 import 'package:mcs_calculator/presentation/components/simple_tex_view.dart';
 import 'package:mcs_calculator/viewmodels/cs_model.dart';
+import 'package:mcs_calculator/viewmodels/type_extensions.dart';
 import 'package:provider/provider.dart';
 import 'package:mcs_calculator/generated/l10n.dart';
 
@@ -33,77 +34,72 @@ class _InputFormWidgetState extends State<InputFormWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           csParamTextField(
-              onChangeTextHandler: onTextChangedHandler,
-              labelTextCustom: S.of(context).inputStreamIntensity,
-              onHelpIconPressedHandler: () {
-                showModalBottomSheet(
-                  context: context,
-                  enableDrag: true,
-                  showDragHandle: true,
-                  isDismissible: true,
-                  builder: (BuildContext context) {
-                    return simpleTexView(
-                        context: context,
-                        content: S.of(context).inputStreamIntensityDescription);
-                  },
-                );
+              context: context,
+              onChangeTextHandler: (value) {
+                Provider.of<ComputingSystemModel>(context, listen: false)
+                    .inputStreamIntensity = double.parse(value);
+
+                if(value.isEmpty)
               },
-              maxLengthCustom: 4,
-              keyboardTypeCustom: TextInputType.number),
+              customInitialValue:
+                  Provider.of<ComputingSystemModel>(context, listen: false)
+                      .inputStreamIntensity
+                      ?.toInputFieldString(),
+              labelTextCustom: S.of(context).inputStreamIntensity,
+              helpInformationBuilder: (BuildContext context) {
+                return simpleTexView(
+                    context: context,
+                    content: S.of(context).inputStreamIntensityDescription);
+              }),
           csParamTextField(
-              onChangeTextHandler: onTextChangedHandler,
-              onHelpIconPressedHandler: () {
-                showModalBottomSheet(
-                  context: context,
-                  enableDrag: true,
-                  showDragHandle: true,
-                  isDismissible: true,
-                  builder: (BuildContext context) {
-                    return simpleTexView(
-                        context: context,
-                        content: S.of(context).serviceTimeDescription);
-                  },
-                );
+              context: context,
+              onChangeTextHandler: (value) {
+                Provider.of<ComputingSystemModel>(context, listen: false).serviceTime =
+                    double.parse(value);
+              },
+              helpInformationBuilder: (BuildContext context) {
+                return simpleTexView(
+                    context: context,
+                    content: S.of(context).serviceTimeDescription);
               },
               labelTextCustom: S.of(context).serviceTime,
-              maxLengthCustom: 4,
-              keyboardTypeCustom: TextInputType.number),
+              customInitialValue:
+                  Provider.of<ComputingSystemModel>(context, listen: false)
+                      .serviceTime
+                      .toInputFieldString(),),
           csParamTextField(
-              onChangeTextHandler: onTextChangedHandler,
-              labelTextCustom: S.of(context).channelsQuantity,
-              onHelpIconPressedHandler: () {
-                showModalBottomSheet(
+            context: context,
+            onChangeTextHandler: (value) {
+              Provider.of<ComputingSystemModel>(context, listen: false).channelsQuantity =
+                  double.parse(value);
+            },
+            customInitialValue:
+                Provider.of<ComputingSystemModel>(context, listen: false)
+                    .channelsQuantity
+                    ?.toInputFieldString(),
+            labelTextCustom: S.of(context).channelsQuantity,
+            helpInformationBuilder: (BuildContext context) {
+              return simpleTexView(
                   context: context,
-                  enableDrag: true,
-                  showDragHandle: true,
-                  isDismissible: true,
-                  builder: (BuildContext context) {
-                    return simpleTexView(
-                        context: context,
-                        content: S.of(context).channelsQuantityDescription);
-                  },
-                );
-              },
-              maxLengthCustom: 4,
-              keyboardTypeCustom: TextInputType.number),
+                  content: S.of(context).channelsQuantityDescription);
+            },
+          ),
           csParamTextField(
-              onChangeTextHandler: onTextChangedHandler,
+              context: context,
+              onChangeTextHandler: (value) {
+                Provider.of<ComputingSystemModel>(context, listen: false)
+                    .pendingCapacity = double.parse(value);
+              },
+              customInitialValue:
+                  Provider.of<ComputingSystemModel>(context, listen: false)
+                      .pendingCapacity
+                      ?.toInputFieldString(),
               labelTextCustom: S.of(context).pendingCapacity,
-              onHelpIconPressedHandler: () {
-                showModalBottomSheet(
-                  context: context,
-                  enableDrag: true,
-                  showDragHandle: true,
-                  isDismissible: true,
-                  builder: (BuildContext context) {
-                    return simpleTexView(
-                        context: context,
-                        content: S.of(context).pendingCapacityDescription);
-                  },
-                );
-              },
-              maxLengthCustom: 4,
-              keyboardTypeCustom: TextInputType.number),
+              helpInformationBuilder: (BuildContext context) {
+                return simpleTexView(
+                    context: context,
+                    content: S.of(context).pendingCapacityDescription);
+              }),
         ],
       ),
     );
