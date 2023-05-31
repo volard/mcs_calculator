@@ -39,7 +39,10 @@ class _ResultsPaneState extends State<ResultsPane> {
                       },
                     );
                   },
-                  trailing: const Text("4,38")),
+                  trailing: Consumer<ComputingSystemModel>(
+                      builder: (context, model, child) {
+                    return Text(model.rho.toString());
+                  })),
               ListTile(
                   title: Text(S.of(context).avgPendingTime),
                   onTap: () {
@@ -85,7 +88,10 @@ class _ResultsPaneState extends State<ResultsPane> {
                       ),
                     );
                   },
-                  trailing: const Text("4,38")),
+                  trailing: Consumer<ComputingSystemModel>(
+                      builder: (context, model, child) {
+                    return Text(model.rho.toString());
+                  })),
               ListTile(
                   title: Text(S.of(context).queueLength),
                   onTap: () {
@@ -170,31 +176,58 @@ class _ResultsPaneState extends State<ResultsPane> {
                   },
                   trailing: const Text("4,38")),
               ListTile(
-                  title: Text(S.of(context).stateProbabilities),
-                  trailing: IconButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: context,
-                          showDragHandle: true,
-                          builder: (context) {
-                            return Text(S.of(context).PiThDescription);
-                          });
-                    },
-                    icon: const Icon(Icons.info_outlined),
-                  ),
-                  onTap: () {
+                title: Text(S.of(context).stateProbabilities),
+                trailing: IconButton(
+                  onPressed: () {
                     showModalBottomSheet(
                         isScrollControlled: true,
                         context: context,
                         showDragHandle: true,
                         builder: (context) {
-                          ListView(){
-                            
-                          }
+                          return Text(S.of(context).PiThDescription);
                         });
                   },
+                  icon: const Icon(Icons.info_outlined),
                 ),
+                onTap: () {
+                  var localP_i =
+                      Provider.of<ComputingSystemModel>(context, listen: false)
+                          .P_i;
+                  if (localP_i == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Not calculated'),
+                        duration: Duration(milliseconds: 1500),
+                        width: 280.0, // Width of the SnackBar.
+                        padding: EdgeInsets.symmetric(
+                          horizontal:
+                              8.0, // Inner padding for SnackBar content.
+                        ),
+                        behavior: SnackBarBehavior.floating,
+                      ),
+                    );
+                    return;
+                  }
+
+                  List<ListTile> valuesList = [];
+                  for (int i = 0; i < localP_i.length; i++) {
+                    valuesList.add(ListTile(
+                      title: Text("P[ $i ]"),
+                      trailing: Text(localP_i[i].toString()),
+                    ));
+                  }
+                  showModalBottomSheet(
+                      isScrollControlled: true,
+                      context: context,
+                      showDragHandle: true,
+                      builder: (context) {
+                        ListView(
+                          padding: const EdgeInsets.all(8),
+                          children: valuesList,
+                        );
+                      });
+                },
+              ),
             ],
           ),
         );

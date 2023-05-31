@@ -13,8 +13,11 @@ Widget csParamTextField(
       alignment: Alignment.topCenter,
       children: <Widget>[
         TextFormField(
+          // TODO change this to enum value in [ComputingSystemModel]
           key: const Key('intensityInput'),
+
           maxLength: maxLengthCustom,
+
           keyboardType: keyboardTypeCustom,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
