@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 // Singleton considered
 class ComputingSystemModel extends ChangeNotifier {
@@ -74,20 +75,48 @@ class ComputingSystemModel extends ChangeNotifier {
   // P[i] states probabilities with infinity pending capacity consideration
   List<double> pIsInf = [];
 
+  final Parser _mathExpressionParser = Parser();
+  final Variable _rho = Variable('rho');
+  final Variable _iVar = Variable('i');
+  final Variable m = Variable('m');
+
   ///
   bool calculate() {
     if (!isReadyToCalculate()) {
       notifyListeners();
       return false;
     }
+
     // TODO calculate params
+
+    // ---------- loadFactor calculation
+    loadFactor = inputStreamIntensity! / (serviceTime! * pendingCapacity!);
+
+
+    // ---------- pZero calculation
+    // TODO maybe extract it to separate function
+    Expression sigmaExp = _mathExpressionParser.parse("(pho^i) / (i!)");
+
+    ContextModel mathContext = ContextModel()
+      ..bindVariable(_rho, Number(loadFactor!));
+
+    double sigmaResult = 0;
+
+    for(int i = 0; i <= _channelsQuantity!; i++){
+      mathContext.bindVariable(_iVar, Number(i));
+      sigmaResult += sigmaExp.evaluate(EvaluationType.REAL, mathContext);
+    }
+
+
+
+
+    // (3) Evaluate expression:
+    double eval = sigmaExp.evaluate(EvaluationType.REAL, mathContext);
+
+    print(eval);
 
     isCalculated = true;
     notifyListeners();
     return true;
-  }
-
-  double getLoadFactor(double inputStreamIntensity, double serviceTime, double pendingCapacity){
-    return inputStreamIntensity / (serviceTime * pendingCapacity);
   }
 }
