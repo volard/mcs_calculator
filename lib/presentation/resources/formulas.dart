@@ -15,7 +15,7 @@ String avgPendingTimeDescription(BuildContext context) => r"""
 String loadFactorDescription(BuildContext context) => r"""
 <p>
 
-  $$\rho = \frac{\lambda}{m \mu}$$ <br>
+  $$\rho = \frac{\lambda}{\mu}$$ <br>
   
   \(m\) - """ + S.of(context).channelsQuantity + r"""<br>
   \(\mu\) - """ + S.of(context).serviceTime + r"""

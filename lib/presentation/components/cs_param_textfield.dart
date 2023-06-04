@@ -7,6 +7,7 @@ const defaultTextInputType = TextInputType.numberWithOptions(decimal: true);
 Widget csParamTextField(
     {required void Function(String) onChangeTextHandler,
     required String labelTextCustom,
+    isEnabled = true,
     required BuildContext context,
     required Widget Function(BuildContext context) helpInformationBuilder,
     String? customInitialValue,
@@ -22,6 +23,7 @@ Widget csParamTextField(
           key: UniqueKey(),
           initialValue: customInitialValue,
           maxLength: maxLengthCustom,
+          enabled: isEnabled,
           keyboardType: keyboardTypeCustom,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),

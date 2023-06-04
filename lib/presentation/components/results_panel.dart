@@ -236,9 +236,5 @@ class _ResultsPaneState extends State<ResultsPane> {
         }
       },
     );
-
-
-
-    //
   }
 }

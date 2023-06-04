@@ -102,12 +102,12 @@ class _HomePageState extends State<HomePage> {
               ResultsPane(
                 key: UniqueKey(),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 44),
-              //   child: DynamicLineChartWidget(
-              //     key: UniqueKey(),
-              //   ),
-              // )
+              Padding(
+                padding: const EdgeInsets.only(top: 44),
+                child: DynamicLineChartWidget(
+                  key: UniqueKey(),
+                ),
+              )
             ],
           ),
         ),

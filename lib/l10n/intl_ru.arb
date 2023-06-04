@@ -31,6 +31,6 @@
   "requestRejectionProbability": "вероятность отказа заявки",
   "massiveServiceSystem": "Система массового обслуживания",
   "MSS": "СМО",
-  "notAllFieldsFilledException": "Не все поля заполнены"
-
+  "notAllFieldsFilledException": "Не все поля заполнены",
+  "graphDescription" : "График зависимости среднего времени ожидания от коэффициента загрузки системы"
 }

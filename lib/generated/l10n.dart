@@ -369,6 +369,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Graph representing relation between average pending time and system's load factor`
+  String get graphDescription {
+    return Intl.message(
+      'Graph representing relation between average pending time and system\'s load factor',
+      name: 'graphDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

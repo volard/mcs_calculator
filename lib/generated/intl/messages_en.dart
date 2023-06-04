@@ -39,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Quantity of channels (or maintenance devices in other words) proceeding incoming requests"),
         "constant": MessageLookupByLibrary.simpleMessage("Constant"),
         "finite": MessageLookupByLibrary.simpleMessage("Finite"),
+        "graphDescription": MessageLookupByLibrary.simpleMessage(
+            "Graph representing relation between average pending time and system\'s load factor"),
         "infinite": MessageLookupByLibrary.simpleMessage("Infinite"),
         "inputStreamIntensity":
             MessageLookupByLibrary.simpleMessage("Input stream factor"),

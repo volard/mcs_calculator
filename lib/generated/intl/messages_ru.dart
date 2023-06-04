@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Количество каналов (или обслуживающих устройств) обрабатывающих входящие заявки"),
         "constant": MessageLookupByLibrary.simpleMessage("Константа"),
         "finite": MessageLookupByLibrary.simpleMessage("Конечна"),
+        "graphDescription": MessageLookupByLibrary.simpleMessage(
+            "График зависимости среднего времени ожидания от коэффициента загрузки системы"),
         "infinite": MessageLookupByLibrary.simpleMessage("Бесконечна"),
         "inputStreamIntensity": MessageLookupByLibrary.simpleMessage(
             "Интенсивность входного потока"),

@@ -31,5 +31,6 @@
   "requestRejectionProbability": "request rejection probability",
   "massiveServiceSystem": "Mass Service System",
   "MSS": "MSS",
-  "notAllFieldsFilledException": "Not all fields are filled"
+  "notAllFieldsFilledException": "Not all fields are filled",
+  "graphDescription" : "Graph representing relation between average pending time and system's load factor"
 }

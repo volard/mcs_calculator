@@ -51,6 +51,7 @@ class _InputFormWidgetState extends State<InputFormWidget> {
               }),
           csParamTextField(
               context: context,
+              isEnabled: false,
               onChangeTextHandler: (value) {
                 Provider.of<ComputingSystemModel>(context, listen: false).serviceTime =
                     double.tryParse(value);
