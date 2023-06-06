@@ -70,7 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Requests quantity"),
         "serviceTime": MessageLookupByLibrary.simpleMessage("Service time"),
         "serviceTimeDescription": MessageLookupByLibrary.simpleMessage(
-            "Also known as service intensity. It\'s quantity of time needed to proceed one incoming request"),
+            "Also known as service intensity. It\'s quantity of time needed to proceed one incoming request.\n\nFor this task service time is normalized and equal to 1"),
         "stateProbabilities":
             MessageLookupByLibrary.simpleMessage("States probabilities"),
         "stateProbability":

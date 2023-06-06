@@ -34,6 +34,24 @@ class _InputFormWidgetState extends State<InputFormWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           csParamTextField(
+            context: context,
+            isEnabled: false,
+            onChangeTextHandler: (value) {
+              Provider.of<ComputingSystemModel>(context, listen: false)
+                  .serviceTime = double.tryParse(value);
+            },
+            helpInformationBuilder: (BuildContext context) {
+              return simpleTexView(
+                  context: context,
+                  content: S.of(context).serviceTimeDescription);
+            },
+            labelTextCustom: S.of(context).serviceTime,
+            customInitialValue:
+            Provider.of<ComputingSystemModel>(context, listen: false)
+                .serviceTime
+                .toInputFieldString(),
+          ),
+          csParamTextField(
               context: context,
               onChangeTextHandler: (value) {
                 Provider.of<ComputingSystemModel>(context, listen: false)
@@ -50,27 +68,10 @@ class _InputFormWidgetState extends State<InputFormWidget> {
                     content: S.of(context).inputStreamIntensityDescription);
               }),
           csParamTextField(
-              context: context,
-              isEnabled: false,
-              onChangeTextHandler: (value) {
-                Provider.of<ComputingSystemModel>(context, listen: false).serviceTime =
-                    double.tryParse(value);
-              },
-              helpInformationBuilder: (BuildContext context) {
-                return simpleTexView(
-                    context: context,
-                    content: S.of(context).serviceTimeDescription);
-              },
-              labelTextCustom: S.of(context).serviceTime,
-              customInitialValue:
-                  Provider.of<ComputingSystemModel>(context, listen: false)
-                      .serviceTime
-                      .toInputFieldString(),),
-          csParamTextField(
             context: context,
             onChangeTextHandler: (value) {
-              Provider.of<ComputingSystemModel>(context, listen: false).channelsQuantity =
-                  double.tryParse(value);
+              Provider.of<ComputingSystemModel>(context, listen: false)
+                  .channelsQuantity = double.tryParse(value);
             },
             customInitialValue:
                 Provider.of<ComputingSystemModel>(context, listen: false)

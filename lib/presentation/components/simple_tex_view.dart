@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:mcs_calculator/main.dart';
@@ -5,7 +6,7 @@ import 'package:mcs_calculator/main.dart';
 Widget simpleTexView({required BuildContext context, required String content}) {
   var textColor;
 
-  if (savedThemeMode!.isLight) {
+  if (AdaptiveTheme.of(context).mode == AdaptiveThemeMode.light) {
     textColor = "101111";
   } else {
     textColor = "cde1f2";

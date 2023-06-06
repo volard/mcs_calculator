@@ -22,20 +22,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    if (AdaptiveTheme.of(context).theme == AdaptiveTheme.of(context).darkTheme){
+    if (AdaptiveTheme.of(context).theme ==
+        AdaptiveTheme.of(context).darkTheme) {
       themeIcon = Icons.light_mode;
     } else {
       themeIcon = Icons.dark_mode;
     }
 
-
-
-    void toggleTheme(){
+    void toggleTheme() {
       AdaptiveTheme.of(context).toggleThemeMode();
 
       setState(() {
-        if (AdaptiveTheme.of(context).theme == AdaptiveTheme.of(context).darkTheme){
+        if (AdaptiveTheme.of(context).theme ==
+            AdaptiveTheme.of(context).darkTheme) {
           themeIcon = Icons.light_mode;
         } else {
           themeIcon = Icons.dark_mode;
@@ -43,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       });
     }
 
-    void toggleLanguage(){
+    void toggleLanguage() {
       MyApp.toggleLocale(context);
     }
 
@@ -51,20 +50,22 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.calculate),
         onPressed: () {
-          bool isCalculationSuccessful = Provider.of<ComputingSystemModel>(context, listen: false).calculate();
+          bool isCalculationSuccessful =
+              Provider.of<ComputingSystemModel>(context, listen: false)
+                  .calculate();
 
-          if(!isCalculationSuccessful){
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red,
-                padding: const EdgeInsets.all(10.0,),
-                behavior: SnackBarBehavior.floating,
-                content: Text(
+          if (!isCalculationSuccessful) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.red,
+              padding: const EdgeInsets.all(
+                10.0,
+              ),
+              behavior: SnackBarBehavior.floating,
+              content: Text(
                   textAlign: TextAlign.center,
-                     S.of(context).notAllFieldsFilledException),)
-            );
+                  S.of(context).notAllFieldsFilledException),
+            ));
           }
-
         },
       ),
       appBar: AppBar(
@@ -72,22 +73,20 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
               onPressed: toggleLanguage,
-              icon:
-
-              Padding(
+              icon: Padding(
                 padding: const EdgeInsets.all(2.5),
                 child: FittedBox(
                   child: SvgPicture.asset(
-                      "assets/english_usa.svg",
-                      semanticsLabel: 'Acme Logo',
-                      width: 40,
-                      height: 40,
+                    "assets/english_usa.svg",
+                    colorFilter: const ColorFilter.mode(
+                        Colors.transparent, BlendMode.colorBurn),
+                    semanticsLabel: 'Acme Logo',
+                    width: 40,
+                    height: 40,
                   ),
                 ),
               )),
-          IconButton(
-              onPressed: toggleTheme,
-              icon: Icon(themeIcon)),
+          IconButton(onPressed: toggleTheme, icon: Icon(themeIcon)),
         ],
       ),
       body: SingleChildScrollView(
@@ -103,7 +102,8 @@ class _HomePageState extends State<HomePage> {
                 key: UniqueKey(),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 44),
+                padding: const EdgeInsets.only(
+                    top: 44, bottom: 50, left: 5, right: 5),
                 child: DynamicLineChartWidget(
                   key: UniqueKey(),
                 ),

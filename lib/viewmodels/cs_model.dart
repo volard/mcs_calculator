@@ -1,9 +1,11 @@
 import 'dart:core';
+import 'dart:ffi';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:intl/intl.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'package:mcs_calculator/viewmodels/type_extensions.dart';
+import 'package:mcs_calculator/presentation/resources/app_resources.dart';
 
 // Singleton considered
 // TODO one model here consists of wo actually:  one with constant pendingCapacity and another with infinity capacity. For the task its ok but...
@@ -80,7 +82,14 @@ class ComputingSystemModel extends ChangeNotifier {
   double? pendingTime; // T (or W)
   //#endregion
 
+
+
   //region ---------- REST OF PROPERTIES
+  double? queueLengthInf; // L_queue_Inf
+  double? pQueueInf; // P_queue
+  double? pendingTimeInf; // T (or W) infinity
+
+
   double? pRejection;
   final double pRejectionInf = 0;
 
@@ -104,13 +113,65 @@ class ComputingSystemModel extends ChangeNotifier {
   List<FlSpot> graphInfPoints = [];
   //#endregion
 
+
+  //#region ---------- CALCULATION METHODS
+
   final Parser _mathExpressionParser = Parser();
   final Variable _rho = Variable('rho');
   final Variable _iVar = Variable('i');
   final Variable _m = Variable('m');
   final Variable _n = Variable('n');
   final Variable _Pzero = Variable('Pzero');
+  final Variable _Pqueue = Variable('Pqueue');
 
+
+  /// Calculate local [queueLengthInf] and returns it
+  double calculatePendingTimeInf(){
+    assert(queueLengthInf != null, "calculate queueLengthInf before");
+    assert(absoluteThroughputInf != null, "calculate absoluteThroughputInf before");
+
+    pendingTimeInf = queueLengthInf! / absoluteThroughputInf!;
+
+    return pendingTimeInf!;
+  }
+
+  /// Calculate local [pQueueInf] and returns it
+  double calculatePQueueInf(){
+    assert(loadFactor != null, "calculate loadFactor before");
+    assert(channelsQuantity != null, "calculate channelsQuantity before");
+    assert(pZeroInf != null, "calculate pZeroInf before");
+
+    Expression pQueueExpression = _mathExpressionParser.parse(
+        "(rho^(n+1) * Pzero) / (n! * (n - rho))"
+    );
+
+    ContextModel mathContext = ContextModel()
+      ..bindVariable(_rho, Number(loadFactor!))
+      ..bindVariable(_n, Number(channelsQuantity!))
+      ..bindVariable(_Pzero, Number(pZeroInf!));
+
+    pQueueInf = pQueueExpression.evaluate(EvaluationType.REAL, mathContext);
+
+    return pQueueInf!;
+  }
+
+  /// Calculates local [queueLengthInf] and returns it
+  double calculateQueueLengthInf(){
+    assert(pQueueInf != null, "calculate pQueue length before");
+    assert(channelsQuantity != null, "calculate channelsQuantity before");
+    assert(loadFactor != null, "calculate loadFactor before");
+
+    Expression queueLengthInfExpression = _mathExpressionParser.parse("n / (n - rho) * Pqueue");
+
+    ContextModel mathContext = ContextModel()
+      ..bindVariable(_rho, Number(loadFactor!))
+      ..bindVariable(_n, Number(channelsQuantity!))
+      ..bindVariable(_Pqueue, Number(pQueueInf!));
+
+    queueLengthInf = queueLengthInfExpression.evaluate(EvaluationType.REAL, mathContext);
+
+    return queueLengthInf!;
+  }
 
   /// Calculates local [loadFactor] and returns it
   double calculateLoadFactor(){
@@ -285,6 +346,8 @@ class ComputingSystemModel extends ChangeNotifier {
     return requestsQuantity!;
   }
 
+  //#endregion
+
   /// Calculates system's properties and return success status
   /// whether calculation happened or not
   bool calculate() {
@@ -292,7 +355,7 @@ class ComputingSystemModel extends ChangeNotifier {
       notifyListeners();
       return false;
     } else {
-      if (!isModified){
+      if (!isModified && isCalculated){
         return true;
       }
     }
@@ -321,7 +384,7 @@ class ComputingSystemModel extends ChangeNotifier {
 
     for(int i = 0; i < _channelsQuantity! + _pendingCapacity!; i++){
       mathContext.bindVariable(_iVar, Number(i));
-      pIs.add(pIExpression.evaluate(EvaluationType.REAL, mathContext));
+      pIs.add((pIExpression.evaluate(EvaluationType.REAL, mathContext) as double).roundTo(Constants.doubleRoundPrecise));
     }
 
     //#endregion
@@ -330,9 +393,9 @@ class ComputingSystemModel extends ChangeNotifier {
     graphPoints.clear();
     graphInfPoints.clear();
 
-    for(double i = 0; i < inputStreamIntensity!; i += 0.2){
+    for(double i = 0.001; i < inputStreamIntensity!; i += 0.2){
       var currentModel = ComputingSystemModel.predefined(
-          _inputStreamIntensity,
+          i,
           _serviceTime,
           _pendingCapacity,
           _channelsQuantity)
@@ -344,10 +407,16 @@ class ComputingSystemModel extends ChangeNotifier {
       ..calculateQueueLength()
       ..calculatePendingTime();
       
-      graphPoints.add(FlSpot(currentModel.loadFactor!, currentModel.pendingTime!));
+      graphPoints.add(FlSpot(currentModel.loadFactor!, currentModel.pendingTime!.roundTo(Constants.doubleRoundPrecise)));
 
-      // TODO I stuck with "infinity system" calculation
+      currentModel
+        ..calculatePZeroInf()
+        ..calculatePQueueInf()
+        ..calculateQueueLengthInf()
+        ..calculateAbsoluteThroughputInf()
+        ..calculatePendingTimeInf();
 
+      graphInfPoints.add(FlSpot(currentModel.loadFactor!, currentModel.pendingTimeInf!.roundTo(Constants.doubleRoundPrecise)));
     }
 
     //#endregion

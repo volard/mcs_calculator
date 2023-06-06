@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:mcs_calculator/presentation/components/equation_pipeline.dart';
 import 'package:mcs_calculator/presentation/components/simple_tex_view.dart';
 import 'package:mcs_calculator/presentation/resources/app_resources.dart';
 import 'package:mcs_calculator/viewmodels/cs_model.dart';
+import 'package:mcs_calculator/viewmodels/type_extensions.dart';
 import 'package:provider/provider.dart';
 import '../../generated/l10n.dart';
 
@@ -51,7 +54,7 @@ class _ResultsPaneState extends State<ResultsPane> {
                         },
                       );
                     },
-                    trailing: Text(model.loadFactor.toString())
+                    trailing: Text(model.loadFactor.roundTo(Constants.doubleRoundPrecise).toString())
                 ),
                 ListTile(
                     title: Text(S.of(context).avgPendingTime),
@@ -98,7 +101,7 @@ class _ResultsPaneState extends State<ResultsPane> {
                         ),
                       );
                     },
-                    trailing: Text(model.loadFactor.toString())
+                    trailing: Text(model.loadFactor.roundTo(Constants.doubleRoundPrecise).toString())
                         ),
                 ListTile(
                     title: Text(S.of(context).queueLength),
@@ -135,7 +138,7 @@ class _ResultsPaneState extends State<ResultsPane> {
                         ),
                       );
                     },
-                    trailing: Text(model.queueLength.toString())),
+                    trailing: Text(model.queueLength.roundTo(Constants.doubleRoundPrecise).toString())),
                 ListTile(
                     title: Text(S.of(context).requestsQuantity),
                     onTap: () {
@@ -182,7 +185,7 @@ class _ResultsPaneState extends State<ResultsPane> {
                         ),
                       );
                     },
-                    trailing: Text(model.requestsQuantity.toString())),
+                    trailing: Text(model.requestsQuantity.roundTo(Constants.doubleRoundPrecise).toString())),
                 ListTile(
                   title: Text(S.of(context).stateProbabilities),
                   trailing: IconButton(
@@ -192,7 +195,10 @@ class _ResultsPaneState extends State<ResultsPane> {
                           context: context,
                           showDragHandle: true,
                           builder: (context) {
-                            return Text(S.of(context).PiThDescription);
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 30.0,horizontal: 20.0),
+                              child: Text(S.of(context).PiThDescription),
+                            );
                           });
                     },
                     icon: const Icon(Icons.info_outlined),
@@ -214,12 +220,13 @@ class _ResultsPaneState extends State<ResultsPane> {
                     List<ListTile> valuesList = [];
                     for (int i = 0; i < localP_is.length; i++) {
                       valuesList.add(ListTile(
-                        title: Text("P[ $i ]"),
+                        title: Text("P$i", style: const TextStyle(fontFeatures: [
+                          FontFeature.subscripts(),
+                        ],),),
                         trailing: Text(localP_is[i].toString()),
                       ));
                     }
                     showModalBottomSheet(
-                        isScrollControlled: true,
                         context: context,
                         showDragHandle: true,
                         builder: (context) {

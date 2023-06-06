@@ -14,7 +14,7 @@
   "appName": "MSC calculator",
   "noInputErrorLabelText": "Please input value",
   "inputStreamIntensityDescription": "Quantity of incoming requests per unit time",
-  "serviceTimeDescription": "Also known as service intensity. It's quantity of time needed to proceed one incoming request",
+  "serviceTimeDescription": "Also known as service intensity. It's quantity of time needed to proceed one incoming request.\n\nFor this task service time is normalized and equal to 1",
   "channelsQuantityDescription": "Quantity of channels (or maintenance devices in other words) proceeding incoming requests",
   "pendingCapacityDescription": "Also known as buffer size. It's quantity of requests that can stay in system waiting for proceeding. Imagine it like amount of people that waiting their turn in a cashier queue in a store for example",
   "absoluteThroughput": "Absolute throughput",

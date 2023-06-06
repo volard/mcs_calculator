@@ -190,10 +190,10 @@ class S {
     );
   }
 
-  /// `Also known as service intensity. It's quantity of time needed to proceed one incoming request`
+  /// `Also known as service intensity. It's quantity of time needed to proceed one incoming request.\n\nFor this task service time is normalized and equal to 1`
   String get serviceTimeDescription {
     return Intl.message(
-      'Also known as service intensity. It\'s quantity of time needed to proceed one incoming request',
+      'Also known as service intensity. It\'s quantity of time needed to proceed one incoming request.\n\nFor this task service time is normalized and equal to 1',
       name: 'serviceTimeDescription',
       desc: '',
       args: [],

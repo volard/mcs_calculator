@@ -73,7 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceTime":
             MessageLookupByLibrary.simpleMessage("Время обслуживания"),
         "serviceTimeDescription": MessageLookupByLibrary.simpleMessage(
-            "Также известный, как интенсивность обслуживания. Это количество времени, необходимое для обработки одной входящей заявки"),
+            "Также известный, как интенсивность обслуживания. Это количество времени, необходимое для обработки одной входящей заявки.\n\nДля этой задачи время обслуживания нормированное и равно 1"),
         "stateProbabilities":
             MessageLookupByLibrary.simpleMessage("Вероятности состояний"),
         "stateProbability":
